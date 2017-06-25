@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-export declare class $WebSocket {
+export declare class WSocket {
     private url;
     private protocols;
     private config;
@@ -17,9 +17,11 @@ export declare class $WebSocket {
     private reconnectableStatusCodes;
     private socket;
     private dataStream;
+    private errorMessages;
     private internalConnectionState;
     constructor(url: string, protocols?: Array<string>, config?: WebSocketConfig, binaryType?: BinaryType);
     connect(force?: boolean): void;
+    getErrorStream(): Subject<any>;
     /**
      * Run in Block Mode
      * Return true when can send and false in socket closed
@@ -59,7 +61,6 @@ export declare class $WebSocket {
      */
     send(data: any, mode?: WebSocketSendMode, binary?: boolean): any;
     getDataStream(): Subject<any>;
-    getErrorStream(): Subject<any>;
     onOpenHandler(event: Event): void;
     notifyOpenCallbacks(event: any): void;
     fireQueue(): void;

@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 
 @Injectable()
-export class $WebSocket {
+export class WSocket {
 
     private static Helpers = class {
         static isPresent(obj: any): boolean {
@@ -203,7 +203,7 @@ export class $WebSocket {
                 this.socket.send(data.message);
             } else {
                 this.socket.send(
-                       $WebSocket.Helpers.isString(data.message) ? data.message : JSON.stringify(data.message)
+                       WSocket.Helpers.isString(data.message) ? data.message : JSON.stringify(data.message)
                 );
             }
             // data.deferred.resolve();
@@ -238,7 +238,7 @@ export class $WebSocket {
     };
 
     onMessage(callback, options?) {
-        if (!$WebSocket.Helpers.isFunction(callback)) {
+        if (!WSocket.Helpers.isFunction(callback)) {
             throw new Error('Callback must be a function');
         }
 
